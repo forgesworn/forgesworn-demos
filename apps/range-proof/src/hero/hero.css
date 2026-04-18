@@ -1,6 +1,6 @@
 .rp-hero {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--space-12);
   padding: var(--space-16) 0 var(--space-24);
   align-items: start;

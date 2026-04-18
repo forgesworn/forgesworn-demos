@@ -105,6 +105,7 @@ body {
   line-height: 1.6;
   color: var(--colour-text);
   background: var(--colour-bg);
+  overflow-x: hidden;
 }
 
 button {
@@ -276,8 +277,11 @@ a {
   border-radius: var(--radius-full);
   color: var(--colour-text);
   min-height: 40px;
+  max-width: 100%;
+  min-width: 0;
   cursor: pointer;
   transition: border-color var(--duration-fast) var(--ease-out-expo);
+  text-align: left;
 }
 
 .fgs-install-cmd:hover {
@@ -292,6 +296,14 @@ a {
 .fgs-install-cmd code {
   font-family: inherit;
   color: var(--colour-text);
+  overflow-wrap: anywhere;
+}
+
+/* Source link — keep tappable even at small text size */
+.fgs-install-source {
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
 }
 
 .fgs-install-status {

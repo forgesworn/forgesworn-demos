@@ -42,7 +42,7 @@
   font-weight: 600;
   cursor: pointer;
   font-family: var(--font-body);
-  min-height: 40px;
+  min-height: 44px;
 }
 
 .rs-playground-demos pre {
