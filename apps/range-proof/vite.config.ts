@@ -6,13 +6,6 @@ export default defineConfig({
   build: {
     target: "es2022",
     sourcemap: true,
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          "range-proof": ["@forgesworn/range-proof"],
-        },
-      },
-    },
   },
   server: {
     port: 5173,
