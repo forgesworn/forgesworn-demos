@@ -1,0 +1,121 @@
+/*
+ * ForgeSworn demos — shared theme.
+ * Architectural direction with Scientific accents for crypto output.
+ * Respects prefers-color-scheme and prefers-reduced-motion.
+ */
+
+:root {
+  /* Typography scale */
+  --font-display: "Inter Display", "Inter", system-ui, -apple-system, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", "SF Mono", ui-monospace, Menlo, monospace;
+
+  /* Fluid type scale */
+  --text-xs: clamp(0.75rem, 0.72rem + 0.15vw, 0.8125rem);
+  --text-sm: clamp(0.875rem, 0.84rem + 0.2vw, 0.9375rem);
+  --text-base: clamp(1rem, 0.96rem + 0.25vw, 1.0625rem);
+  --text-lg: clamp(1.125rem, 1.08rem + 0.3vw, 1.25rem);
+  --text-xl: clamp(1.5rem, 1.4rem + 0.6vw, 1.75rem);
+  --text-2xl: clamp(2rem, 1.85rem + 0.9vw, 2.5rem);
+  --text-display: clamp(2.5rem, 2.2rem + 1.8vw, 4rem);
+
+  /* Spacing scale (rem-based) */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+
+  /* Radii */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-full: 999px;
+
+  /* Motion */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+  --duration-fast: 150ms;
+  --duration-medium: 300ms;
+  --duration-slow: 600ms;
+
+  /* Light theme (default) */
+  --colour-bg: #f5f5f7;
+  --colour-bg-raised: #ffffff;
+  --colour-bg-subtle: #eaeaec;
+  --colour-text: #1a1a1a;
+  --colour-text-muted: #555;
+  --colour-text-subtle: #888;
+  --colour-border: #d0d0d4;
+  --colour-border-strong: #1a1a1a;
+  --colour-accent: #1a1a1a;
+  --colour-accent-fg: #f5f5f7;
+
+  /* Scientific output palette (for crypto reveal) */
+  --colour-crypto-bg: #0d0d0d;
+  --colour-crypto-fg: #e8e8e8;
+  --colour-crypto-muted: #888;
+  --colour-crypto-highlight: #7dd3fc;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --colour-bg: #0d0d0d;
+    --colour-bg-raised: #1a1a1a;
+    --colour-bg-subtle: #222;
+    --colour-text: #f5f5f7;
+    --colour-text-muted: #aaa;
+    --colour-text-subtle: #777;
+    --colour-border: #333;
+    --colour-border-strong: #f5f5f7;
+    --colour-accent: #f5f5f7;
+    --colour-accent-fg: #0d0d0d;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 0ms;
+    --duration-medium: 0ms;
+    --duration-slow: 0ms;
+  }
+}
+
+/* Reset + baseline */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  color: var(--colour-text);
+  background: var(--colour-bg);
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+input, textarea {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+}
