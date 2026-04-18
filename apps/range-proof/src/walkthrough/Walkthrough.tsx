@@ -51,6 +51,27 @@ export function Walkthrough() {
 
       <article class="rp-walk-step">
         <h3>2. Bit decomposition</h3>
+        <svg
+          class="rp-walk-diagram"
+          viewBox="0 0 320 80"
+          role="img"
+          aria-label="A value decomposed into eight bits, each proven to be zero or one"
+        >
+          {Array.from({ length: 8 }).map((_, i) => {
+            const x = 20 + i * 36;
+            const bit = [1, 0, 1, 1, 0, 1, 0, 1][i] ?? 0;
+            return (
+              <g key={i}>
+                <rect x={x} y="24" width="24" height="24" rx="3" fill={bit ? "currentColor" : "transparent"} stroke="currentColor" stroke-width="1.5">
+                  <animate attributeName="opacity" values="0.3;1;1" dur="2.4s" begin={`${i * 0.15}s`} repeatCount="indefinite" />
+                </rect>
+                <text x={x + 12} y="42" font-family="var(--font-mono)" font-size="12" fill={bit ? "var(--colour-bg)" : "currentColor"} text-anchor="middle">
+                  {bit}
+                </text>
+              </g>
+            );
+          })}
+        </svg>
         <p>
           To prove <code>0 ≤ v &lt; 2^n</code> without revealing{" "}
           <code>v</code>, we express <code>v</code> as its bits and prove each
@@ -61,6 +82,36 @@ export function Walkthrough() {
 
       <article class="rp-walk-step">
         <h3>3. Fiat-Shamir</h3>
+        <svg
+          class="rp-walk-diagram"
+          viewBox="0 0 320 90"
+          role="img"
+          aria-label="Three commitments feed into a hash which emits a single challenge"
+        >
+          <g font-family="var(--font-mono)" font-size="10" fill="currentColor">
+            <circle cx="30" cy="25" r="8" fill="currentColor" opacity="0.6" />
+            <text x="30" y="28" text-anchor="middle" fill="var(--colour-bg)">A</text>
+            <circle cx="30" cy="55" r="8" fill="currentColor" opacity="0.6" />
+            <text x="30" y="58" text-anchor="middle" fill="var(--colour-bg)">B</text>
+            <circle cx="30" cy="85" r="8" fill="currentColor" opacity="0.6" />
+            <text x="30" y="88" text-anchor="middle" fill="var(--colour-bg)">C</text>
+
+            <line x1="42" y1="25" x2="140" y2="50" stroke="currentColor" stroke-width="1.2" opacity="0.4" />
+            <line x1="42" y1="55" x2="140" y2="50" stroke="currentColor" stroke-width="1.2" opacity="0.4" />
+            <line x1="42" y1="85" x2="140" y2="50" stroke="currentColor" stroke-width="1.2" opacity="0.4" />
+
+            <rect x="140" y="35" width="80" height="30" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.5" />
+            <text x="180" y="55" text-anchor="middle" font-family="var(--font-mono)" font-size="11" fill="currentColor">H(·)</text>
+
+            <line x1="220" y1="50" x2="280" y2="50" stroke="currentColor" stroke-width="1.5">
+              <animate attributeName="stroke-dasharray" values="0,60;60,0" dur="2.4s" repeatCount="indefinite" />
+            </line>
+            <circle cx="290" cy="50" r="8" fill="currentColor">
+              <animate attributeName="r" values="5;10;5" dur="2.4s" repeatCount="indefinite" />
+            </circle>
+            <text x="290" y="53" text-anchor="middle" fill="var(--colour-bg)">e</text>
+          </g>
+        </svg>
         <p>
           The interactive proof is made non-interactive by hashing all
           commitments into a single challenge — no verifier needs to be online

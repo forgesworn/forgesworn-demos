@@ -7,6 +7,29 @@ export function Walkthrough() {
 
       <article class="rs-walk-step">
         <h3>1. A ring is a claim, not consensus</h3>
+        <svg
+          class="rs-walk-diagram"
+          viewBox="0 0 200 120"
+          role="img"
+          aria-label="A composer picks five public keys and calls the result a ring — no consent is required"
+        >
+          <g font-family="var(--font-mono)" font-size="9" fill="currentColor">
+            {/* Composer on the left */}
+            <rect x="10" y="50" width="30" height="20" rx="2" fill="transparent" stroke="currentColor" stroke-width="1.5" />
+            <text x="25" y="64" text-anchor="middle" fill="currentColor">you</text>
+
+            {/* Five pubkeys on the right */}
+            {[40, 55, 70, 85, 100].map((y, i) => (
+              <g key={i}>
+                <circle cx="160" cy={y - 10} r="6" fill="currentColor" opacity="0.8" />
+                <text x="170" y={y - 7} fill="currentColor" opacity="0.5">key {i + 1}</text>
+                <line x1="42" y1="60" x2="152" y2={y - 10} stroke="currentColor" stroke-width="0.8" opacity="0.3">
+                  <animate attributeName="opacity" values="0;0.3;0.3" dur="2.4s" begin={`${i * 0.12}s`} repeatCount="indefinite" />
+                </line>
+              </g>
+            ))}
+          </g>
+        </svg>
         <p>
           Anyone can compose a ring of public keys — no consent is needed from
           the keys themselves. A valid ring signature proves <em>one of</em>{" "}
@@ -111,6 +134,34 @@ export function Walkthrough() {
 
       <article class="rs-walk-step">
         <h3>5. One application built on top: nostr-veil</h3>
+        <svg
+          class="rs-walk-diagram"
+          viewBox="0 0 320 90"
+          role="img"
+          aria-label="Ring signatures plus sybil resistance plus aggregation produce a trust score event"
+        >
+          <g font-family="var(--font-mono)" font-size="9" fill="currentColor">
+            <g>
+              <rect x="10" y="20" width="60" height="22" rx="3" fill="transparent" stroke="currentColor" stroke-width="1" />
+              <text x="40" y="34" text-anchor="middle" fill="currentColor">ring-sig</text>
+            </g>
+            <g>
+              <rect x="10" y="50" width="60" height="22" rx="3" fill="transparent" stroke="currentColor" stroke-width="1" opacity="0.5" />
+              <text x="40" y="64" text-anchor="middle" fill="currentColor" opacity="0.6">sybil layer</text>
+            </g>
+            <line x1="75" y1="31" x2="140" y2="45" stroke="currentColor" stroke-width="1" opacity="0.5" />
+            <line x1="75" y1="61" x2="140" y2="45" stroke="currentColor" stroke-width="1" opacity="0.5" />
+            <rect x="140" y="30" width="70" height="30" rx="3" fill="currentColor" opacity="0.15" stroke="currentColor" stroke-width="1.2" />
+            <text x="175" y="48" text-anchor="middle" fill="currentColor">aggregate</text>
+            <line x1="210" y1="45" x2="260" y2="45" stroke="currentColor" stroke-width="1.5">
+              <animate attributeName="stroke-dasharray" values="0,50;50,0" dur="2.4s" repeatCount="indefinite" />
+            </line>
+            <circle cx="285" cy="45" r="14" fill="currentColor">
+              <animate attributeName="r" values="10;16;10" dur="2.4s" repeatCount="indefinite" />
+            </circle>
+            <text x="285" y="48" text-anchor="middle" fill="var(--colour-bg)">30382</text>
+          </g>
+        </svg>
         <p>
           If you want a complete example of layering ring-sig with sybil
           resistance, trust scores, and aggregation to produce privacy-preserving
