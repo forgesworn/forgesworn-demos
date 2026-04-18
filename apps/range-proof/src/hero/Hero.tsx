@@ -1,5 +1,6 @@
 import { useState } from "preact/hooks";
 import { DateInput } from "./DateInput.js";
+import { ProofAnimation } from "./ProofAnimation.js";
 import { proveAgeOver18, encodeBundle, type AgeProofBundle } from "./proveAge.js";
 import "./hero.css";
 
@@ -9,22 +10,21 @@ export function Hero() {
   const [birthday, setBirthday] = useState<string>(DEMO_BIRTHDAY);
   const [bundle, setBundle] = useState<AgeProofBundle | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [generating, setGenerating] = useState(false);
+  const [animating, setAnimating] = useState(false);
 
-  async function handleGenerate() {
+  function handleGenerate() {
     setError(null);
     setBundle(null);
-    setGenerating(true);
+    setAnimating(true);
+  }
+
+  function handleAnimationComplete() {
+    setAnimating(false);
     try {
-      // setTimeout yields to the event loop so the spinner paints before the
-      // synchronous crypto work blocks for a few hundred ms on slower devices.
-      await new Promise((resolve) => setTimeout(resolve, 16));
       const result = proveAgeOver18(birthday);
       setBundle(result);
     } catch (err) {
       setError(err instanceof Error ? err.message : String(err));
-    } finally {
-      setGenerating(false);
     }
   }
 
@@ -53,12 +53,13 @@ export function Hero() {
           type="button"
           class="rp-generate"
           onClick={handleGenerate}
-          disabled={generating}
+          disabled={animating}
         >
-          {generating ? "Generating…" : "Generate proof →"}
+          {animating ? "Generating…" : "Generate proof →"}
         </button>
+        <ProofAnimation active={animating} onComplete={handleAnimationComplete} />
         {error && <div class="rp-error" role="alert">{error}</div>}
-        {bundle && (
+        {bundle && !animating && (
           <div class="rp-output">
             <div class="rp-output-label">Proof bundle</div>
             <pre>{JSON.stringify(bundle.proof, null, 2).slice(0, 400)}…</pre>

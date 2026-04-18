@@ -1,0 +1,61 @@
+.rp-proof-anim {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: var(--colour-crypto-bg);
+  border-radius: var(--radius-md);
+}
+
+.rp-proof-bits {
+  display: grid;
+  grid-template-columns: repeat(32, 1fr);
+  gap: 2px;
+  height: 16px;
+}
+
+.rp-bit {
+  display: block;
+  background: var(--colour-crypto-highlight);
+  opacity: 0;
+  animation: rp-bit-reveal 300ms var(--ease-out-expo) forwards;
+}
+
+@keyframes rp-bit-reveal {
+  from { opacity: 0; transform: scaleY(0.2); }
+  to   { opacity: 1; transform: scaleY(1); }
+}
+
+.rp-proof-bits.is-decompose .rp-bit {
+  animation: rp-bit-decompose 400ms var(--ease-in-out-quart) forwards;
+}
+
+@keyframes rp-bit-decompose {
+  0%   { background: var(--colour-crypto-highlight); }
+  50%  { background: var(--colour-crypto-fg); transform: translateY(-4px); }
+  100% { background: var(--colour-crypto-highlight); transform: translateY(0); }
+}
+
+.rp-proof-bits.is-compact .rp-bit:nth-child(n+9) {
+  animation: rp-bit-fade 250ms var(--ease-in-out-quart) forwards;
+}
+
+@keyframes rp-bit-fade {
+  to { opacity: 0.15; }
+}
+
+.rp-proof-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--colour-crypto-muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rp-bit,
+  .rp-proof-bits.is-decompose .rp-bit,
+  .rp-proof-bits.is-compact .rp-bit:nth-child(n+9) {
+    animation-duration: 0ms;
+  }
+}
