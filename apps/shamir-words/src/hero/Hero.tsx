@@ -53,6 +53,20 @@ export function Hero() {
           <>
             <Cards shares={shares} selected={selected} onToggle={toggleCard} />
             <RestoreTray shares={shares} selected={selected} threshold={3} />
+            <button
+              type="button"
+              class="sw-download"
+              onClick={async () => {
+                if (!shares) return;
+                const { generateCardSheet, downloadCardSheet } = await import(
+                  "./generateCardSheet.js"
+                );
+                const pdf = await generateCardSheet(shares, 3, 5);
+                downloadCardSheet(pdf);
+              }}
+            >
+              Download printable card sheet (PDF)
+            </button>
           </>
         )}
       </div>

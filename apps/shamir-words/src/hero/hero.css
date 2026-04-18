@@ -139,3 +139,17 @@
   white-space: pre-wrap;
   word-break: break-all;
 }
+
+.sw-download {
+  align-self: flex-start;
+  padding: var(--space-2) var(--space-5);
+  background: transparent;
+  color: var(--colour-text);
+  border: 1px solid var(--colour-border-strong);
+  border-radius: var(--radius-full);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  min-height: 40px;
+  cursor: pointer;
+  font-family: var(--font-body);
+}
