@@ -1,4 +1,5 @@
 import type { SignedColumn } from "./signColumn.js";
+import { ProofInspector } from "./ProofInspector.js";
 import "./publishedColumn.css";
 
 interface Props {
@@ -49,6 +50,7 @@ export function PublishedColumn({ column, threadColour, showEncryptionNote }: Pr
           </p>
         )}
       </footer>
+      <ProofInspector column={column} />
     </article>
   );
 }
