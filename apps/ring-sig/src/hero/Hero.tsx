@@ -2,12 +2,22 @@ import { useState } from "preact/hooks";
 import { RingPresetPicker } from "./RingPresetPicker.js";
 import { SeatPicker } from "./SeatPicker.js";
 import { ColumnComposer } from "./ColumnComposer.js";
+import { PublishedColumn } from "./PublishedColumn.js";
 import { signColumn, type SignedColumn } from "./signColumn.js";
 import type { RingMember, RingPreset } from "./ringPresets.js";
 import "./hero.css";
 
 function newSessionContext(): string {
   return `session-${crypto.randomUUID()}`;
+}
+
+function colourForKeyImage(keyImage: string): string {
+  const hex = keyImage.replace(/^0x/, "").padEnd(6, "0");
+  const r = parseInt(hex.slice(0, 2), 16);
+  const g = parseInt(hex.slice(2, 4), 16);
+  const b = parseInt(hex.slice(4, 6), 16);
+  const hue = (r + g * 256 + b) % 360;
+  return `hsl(${hue}deg 60% 45%)`;
 }
 
 export function Hero() {
@@ -27,6 +37,10 @@ export function Hero() {
     if (!preset || !member) return;
     const signed = signColumn(preset, member, message, context);
     setColumns((prev) => [...prev, signed]);
+  }
+
+  function rotatePseudonym() {
+    setContext(newSessionContext());
   }
 
   const canCompose = Boolean(preset && member);
@@ -51,17 +65,29 @@ export function Hero() {
         )}
         {canCompose && <ColumnComposer onPublish={handlePublish} />}
         {columns.length > 0 && (
-          <pre class="rs-columns-debug">
-            {JSON.stringify(
-              columns.map((c) => ({
-                message: c.message,
-                keyImage: c.keyImage.slice(0, 12) + "…",
-                context: c.context.slice(0, 18) + "…",
-              })),
-              null,
-              2,
-            )}
-          </pre>
+          <div class="rs-rotate">
+            <button type="button" class="rs-rotate-btn" onClick={rotatePseudonym}>
+              Start a new pseudonym →
+            </button>
+            <span class="rs-rotate-hint">
+              Same seat, different context → different key image → unlinkable to your previous columns.
+            </span>
+          </div>
+        )}
+        {columns.length > 0 && (
+          <div class="rs-columns">
+            <div class="rs-columns-label">
+              Step 4 — Your published columns (shown only in this session)
+            </div>
+            {columns.map((column) => (
+              <PublishedColumn
+                key={column.keyImage + column.issuedAt}
+                column={column}
+                threadColour={colourForKeyImage(column.keyImage)}
+                showEncryptionNote={columns[0]?.keyImage === column.keyImage && columns.indexOf(column) === 0}
+              />
+            ))}
+          </div>
         )}
       </div>
     </section>

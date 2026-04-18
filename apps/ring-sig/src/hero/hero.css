@@ -49,13 +49,49 @@
   color: var(--colour-text-muted);
 }
 
-.rs-columns-debug {
-  margin: 0;
-  padding: var(--space-3);
-  background: var(--colour-crypto-bg);
-  color: var(--colour-crypto-fg);
+.rs-columns {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.rs-columns-label {
   font-family: var(--font-mono);
   font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--colour-text-subtle);
+  margin-bottom: var(--space-2);
+}
+
+.rs-rotate {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  background: var(--colour-bg-subtle);
   border-radius: var(--radius-md);
-  overflow-x: auto;
+}
+
+.rs-rotate-btn {
+  padding: var(--space-2) var(--space-4);
+  background: transparent;
+  color: var(--colour-text);
+  border: 1px solid var(--colour-border-strong);
+  border-radius: var(--radius-full);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.rs-rotate-hint {
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+  line-height: 1.5;
+}
+
+@media (max-width: 600px) {
+  .rs-rotate { flex-direction: column; align-items: flex-start; }
 }
