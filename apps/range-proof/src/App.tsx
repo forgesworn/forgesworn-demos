@@ -1,5 +1,6 @@
 import { Header, Footer } from "@forgesworn-demos/ui";
 import { Hero } from "./hero/Hero.js";
+import { Playground } from "./playground/Playground.js";
 import { VerifyView } from "./verify/VerifyView.js";
 
 function getVerifyParam(): string | null {
@@ -13,7 +14,16 @@ export function App() {
   return (
     <>
       <Header current="range-proof" />
-      <main>{encoded ? <VerifyView encoded={encoded} /> : <Hero />}</main>
+      <main>
+        {encoded ? (
+          <VerifyView encoded={encoded} />
+        ) : (
+          <>
+            <Hero />
+            <Playground />
+          </>
+        )}
+      </main>
       <Footer />
     </>
   );
