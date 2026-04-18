@@ -1,5 +1,6 @@
 import { useState } from "preact/hooks";
 import { SeedInput } from "./SeedInput.js";
+import { splitSeed } from "./splitSeed.js";
 import "./hero.css";
 
 const DEMO_SEED =
@@ -8,10 +9,16 @@ const DEMO_SEED =
 export function Hero() {
   const [seed, setSeed] = useState(DEMO_SEED);
   const [shares, setShares] = useState<readonly string[][] | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   function handleSplit() {
-    // Real split lands in Task 2.2.
-    setShares([["placeholder"]]);
+    setError(null);
+    try {
+      setShares(splitSeed(seed, 3, 5));
+    } catch (err) {
+      setShares(null);
+      setError(err instanceof Error ? err.message : String(err));
+    }
   }
 
   return (
@@ -28,7 +35,18 @@ export function Hero() {
         <button type="button" class="sw-split" onClick={handleSplit}>
           Split into 5 shares →
         </button>
-        {shares && <div class="sw-placeholder">Split result lands in Task 2.2</div>}
+        {error && <div class="sw-error" role="alert">{error}</div>}
+        {shares && (
+          <div class="sw-shares-raw" role="status">
+            <div class="sw-output-label">5 shares produced — drag-restore UI lands in Task 2.3</div>
+            {shares.map((share, index) => (
+              <details key={index} class="sw-share-debug">
+                <summary>Share {index + 1}</summary>
+                <pre>{share.join(" ")}</pre>
+              </details>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

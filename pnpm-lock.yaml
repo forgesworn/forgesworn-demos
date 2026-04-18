@@ -81,6 +81,9 @@ importers:
       '@forgesworn/shamir-words':
         specifier: file:../../../shamir-words
         version: file:../shamir-words
+      '@scure/bip39':
+        specifier: ^2.0.1
+        version: 2.0.1
       motion:
         specifier: ^11.0.0
         version: 11.18.2
