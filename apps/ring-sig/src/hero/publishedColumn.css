@@ -86,3 +86,26 @@
 .rs-column-encryption-note strong {
   color: var(--colour-text);
 }
+
+.rs-column-key-image {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.rs-action-primary {
+  margin-top: var(--space-3);
+  padding: var(--space-2) var(--space-5);
+  background: var(--colour-accent);
+  color: var(--colour-accent-fg);
+  border: none;
+  border-radius: var(--radius-full);
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  min-height: 36px;
+  cursor: pointer;
+  transition: transform var(--duration-fast) var(--ease-out-expo);
+}
+
+.rs-action-primary:hover { transform: translateY(-1px); }

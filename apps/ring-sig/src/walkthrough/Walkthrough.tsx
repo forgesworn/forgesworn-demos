@@ -28,14 +28,73 @@ export function Walkthrough() {
 
       <article class="rs-walk-step">
         <h3>3. Why LSAG? Intra-context linkability.</h3>
+        <svg
+          class="rs-walk-diagram"
+          viewBox="0 0 200 200"
+          role="img"
+          aria-label="Five ring members connected in a closed cycle of challenges"
+        >
+          <defs>
+            <marker id="rs-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+              <polygon points="0,0 8,4 0,8" fill="currentColor" />
+            </marker>
+          </defs>
+          {[0, 1, 2, 3, 4].map((i) => {
+            const angle = (i / 5) * Math.PI * 2 - Math.PI / 2;
+            const cx = 100 + Math.cos(angle) * 70;
+            const cy = 100 + Math.sin(angle) * 70;
+            return (
+              <g key={i}>
+                <circle cx={cx} cy={cy} r="8" fill="currentColor" opacity="0.8" />
+                <text
+                  x={cx}
+                  y={cy + 3}
+                  font-family="var(--font-mono)"
+                  font-size="9"
+                  fill="var(--colour-bg-raised)"
+                  text-anchor="middle"
+                >
+                  {i}
+                </text>
+              </g>
+            );
+          })}
+          {[0, 1, 2, 3, 4].map((i) => {
+            const a1 = (i / 5) * Math.PI * 2 - Math.PI / 2;
+            const a2 = ((i + 1) / 5) * Math.PI * 2 - Math.PI / 2;
+            const inset = 10;
+            const x1 = 100 + Math.cos(a1) * (70 - inset);
+            const y1 = 100 + Math.sin(a1) * (70 - inset);
+            const x2 = 100 + Math.cos(a2) * (70 - inset);
+            const y2 = 100 + Math.sin(a2) * (70 - inset);
+            return (
+              <line
+                key={`e-${i}`}
+                x1={x1}
+                y1={y1}
+                x2={x2}
+                y2={y2}
+                stroke="currentColor"
+                stroke-width="1.2"
+                opacity="0.45"
+                marker-end="url(#rs-arrow)"
+              />
+            );
+          })}
+          {/* Pulse that travels around the ring once every 3 s */}
+          <circle r="4" fill="var(--colour-crypto-highlight)">
+            {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+            {(() => { const AM = "animateMotion" as any; return <AM dur="3s" repeatCount="indefinite" path="M 100 30 A 70 70 0 1 1 99.99 30 Z" />; })()}
+          </circle>
+        </svg>
         <p>
           A plain SAG ring signature is unlinkable — the same key signing twice
           produces signatures that look unrelated. LSAG adds a{" "}
           <strong>key image</strong>: a deterministic value for the
-          (signer, context) pair. Within one context, same signer ⇒ same key
-          image, so applications can detect duplicates (ballot-stuffing, double
-          publication) <em>without</em> unmasking anyone. Across different
-          contexts, key images are independent.
+          (signer, context) pair. Within one context, same signer ⇒ same key image,
+          so applications can detect duplicates (ballot-stuffing, double publication){" "}
+          <em>without</em> unmasking anyone. Across different contexts, key images
+          are independent.
         </p>
       </article>
 

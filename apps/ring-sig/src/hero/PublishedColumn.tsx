@@ -1,5 +1,6 @@
 import type { SignedColumn } from "./signColumn.js";
 import { ProofInspector } from "./ProofInspector.js";
+import { KeyImageFingerprint } from "./KeyImageFingerprint.js";
 import "./publishedColumn.css";
 
 interface Props {
@@ -37,8 +38,9 @@ export function PublishedColumn({ column, threadColour, showEncryptionNote }: Pr
         </div>
         <div class="rs-column-proof-row">
           <span class="rs-column-proof-label">Key image</span>
-          <span class="rs-column-proof-value mono" style={{ color: threadColour }}>
-            {short(column.keyImage, 10, 6)}
+          <span class="rs-column-proof-value mono rs-column-key-image">
+            <KeyImageFingerprint keyImage={column.keyImage} accentColour={threadColour} size={48} />
+            <code style={{ color: threadColour }}>{short(column.keyImage, 10, 6)}</code>
           </span>
         </div>
         {showEncryptionNote && (
@@ -53,8 +55,7 @@ export function PublishedColumn({ column, threadColour, showEncryptionNote }: Pr
       <ProofInspector column={column} />
       <button
         type="button"
-        class="rs-inspector-btn"
-        style={{ marginTop: "var(--space-3)" }}
+        class="rs-action-primary"
         onClick={async () => {
           const { generateColumnPdf, downloadColumnPdf } = await import(
             "./generateColumnPdf.js"

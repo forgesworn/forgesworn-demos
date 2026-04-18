@@ -21,22 +21,21 @@
 .rs-seats {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: var(--space-2);
+  gap: var(--space-3);
 }
 
 .rs-seat {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: var(--space-1);
-  padding: var(--space-3) var(--space-4);
+  align-items: center;
+  text-align: center;
+  gap: var(--space-2);
+  padding: var(--space-4) var(--space-3);
   background: var(--colour-bg-raised);
   border: 1px solid var(--colour-border);
   border-radius: var(--radius-md);
-  text-align: left;
   cursor: pointer;
   font-family: var(--font-body);
-  min-height: 60px;
   transition: border-color var(--duration-fast) var(--ease-out-expo),
     transform var(--duration-fast) var(--ease-out-expo);
 }
@@ -46,7 +45,32 @@
 .rs-seat.is-selected {
   border-color: var(--colour-border-strong);
   border-width: 2px;
+  padding: calc(var(--space-4) - 1px) calc(var(--space-3) - 1px);
   background: color-mix(in oklab, var(--colour-accent) 5%, var(--colour-bg-raised));
+}
+
+.rs-chair {
+  width: 40px;
+  height: 48px;
+  stroke: var(--colour-text-muted);
+  stroke-width: 1.5;
+  fill: transparent;
+  transition: stroke var(--duration-fast) var(--ease-out-expo);
+}
+
+.rs-chair.is-active {
+  stroke: var(--colour-text);
+  fill: color-mix(in oklab, var(--colour-accent) 10%, transparent);
+}
+
+.rs-chair rect {
+  fill: transparent;
+  stroke: inherit;
+  stroke-width: inherit;
+}
+
+.rs-chair.is-active rect {
+  fill: color-mix(in oklab, var(--colour-accent) 20%, transparent);
 }
 
 .rs-seat-label-name {

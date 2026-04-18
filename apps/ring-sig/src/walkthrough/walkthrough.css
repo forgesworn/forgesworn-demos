@@ -43,3 +43,16 @@
   background: var(--colour-bg-subtle);
   border-radius: var(--radius-sm);
 }
+
+.rs-walk-diagram {
+  display: block;
+  width: 100%;
+  max-width: 260px;
+  height: auto;
+  color: var(--colour-accent);
+  margin: 0 auto var(--space-4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rs-walk-diagram animateMotion { animation: none; }
+}

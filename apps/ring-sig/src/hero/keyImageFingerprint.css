@@ -1,0 +1,9 @@
+.rs-fingerprint {
+  display: inline-block;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  border-radius: 2px;
+  background: color-mix(in oklab, currentColor 6%, transparent);
+  padding: 2px;
+  vertical-align: middle;
+}

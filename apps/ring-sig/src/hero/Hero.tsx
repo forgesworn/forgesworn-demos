@@ -1,4 +1,5 @@
 import { useState } from "preact/hooks";
+import { InstallRow } from "@forgesworn-demos/ui";
 import { RingPresetPicker } from "./RingPresetPicker.js";
 import { SeatPicker } from "./SeatPicker.js";
 import { ColumnComposer } from "./ColumnComposer.js";
@@ -50,10 +51,15 @@ export function Hero() {
       <div class="rs-hero-copy">
         <h1>Sign as The Insider.</h1>
         <p class="rs-hero-lede">
-          Publish a column under a shared pseudonym. Your message is readable; what's
-          hidden is <em>which</em> of the five members wrote it.
+          Publish a column under a shared pseudonym. Your message is readable;
+          what's hidden is <em>which</em> of the five members wrote it.
         </p>
+        <InstallRow
+          packageName="@forgesworn/ring-sig"
+          githubUrl="https://github.com/forgesworn/ring-sig"
+        />
       </div>
+
       <div class="rs-hero-interact">
         <RingPresetPicker selectedId={preset?.id ?? null} onSelect={handleRingChange} />
         {preset && (
@@ -70,7 +76,8 @@ export function Hero() {
               Start a new pseudonym →
             </button>
             <span class="rs-rotate-hint">
-              Same seat, different context → different key image → unlinkable to your previous columns.
+              Same seat, different context → different key image → unlinkable
+              to your previous columns.
             </span>
           </div>
         )}
@@ -79,12 +86,12 @@ export function Hero() {
             <div class="rs-columns-label">
               Step 4 — Your published columns (shown only in this session)
             </div>
-            {columns.map((column) => (
+            {columns.map((column, index) => (
               <PublishedColumn
                 key={column.keyImage + column.issuedAt}
                 column={column}
                 threadColour={colourForKeyImage(column.keyImage)}
-                showEncryptionNote={columns[0]?.keyImage === column.keyImage && columns.indexOf(column) === 0}
+                showEncryptionNote={index === 0}
               />
             ))}
           </div>
