@@ -1,0 +1,36 @@
+main {
+  min-height: 100vh;
+  padding: 0 var(--space-6);
+  max-width: 72ch;
+  margin: 0 auto;
+}
+
+@media (min-width: 900px) {
+  main {
+    max-width: 1100px;
+  }
+}
+
+.hero {
+  padding: var(--space-16) 0 var(--space-24);
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: var(--text-display);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  margin: 0 0 var(--space-4);
+}
+
+.hero p {
+  font-size: var(--text-xl);
+  color: var(--colour-text-muted);
+  margin: 0 0 var(--space-6);
+}
+
+.placeholder {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--colour-text-subtle);
+}

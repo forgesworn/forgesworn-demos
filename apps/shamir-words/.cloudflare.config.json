@@ -1,0 +1,10 @@
+{
+  "_comment": "Reference only — Cloudflare Pages is configured through the dashboard.",
+  "project": "forgesworn-demos-shamir-words",
+  "productionBranch": "main",
+  "buildCommand": "corepack enable && pnpm install --frozen-lockfile && pnpm -F @forgesworn-demos/shamir-words build",
+  "buildOutputDirectory": "apps/shamir-words/dist",
+  "rootDirectory": "",
+  "environmentVariables": { "NODE_VERSION": "20", "PNPM_VERSION": "9.15.0" },
+  "customDomains": ["shamir-words.forgesworn.dev"]
+}

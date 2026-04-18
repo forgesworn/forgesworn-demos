@@ -73,6 +73,46 @@ importers:
         specifier: ^2.1.9
         version: 2.1.9(@types/node@22.19.17)
 
+  apps/shamir-words:
+    dependencies:
+      '@forgesworn-demos/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
+      '@forgesworn/shamir-words':
+        specifier: file:../../../shamir-words
+        version: file:../shamir-words
+      motion:
+        specifier: ^11.0.0
+        version: 11.18.2
+      pdf-lib:
+        specifier: ^1.17.1
+        version: 1.17.1
+      preact:
+        specifier: ^10.22.0
+        version: 10.29.1
+    devDependencies:
+      '@forgesworn-demos/config':
+        specifier: workspace:*
+        version: link:../../packages/config
+      '@playwright/test':
+        specifier: ^1.47.0
+        version: 1.59.1
+      '@preact/preset-vite':
+        specifier: ^2.9.0
+        version: 2.10.5(@babel/core@7.29.0)(preact@10.29.1)(rollup@4.60.1)(vite@5.4.21(@types/node@22.19.17))
+      eslint:
+        specifier: ^9.0.0
+        version: 9.39.4
+      typescript:
+        specifier: ^5.6.0
+        version: 5.9.3
+      vite:
+        specifier: ^5.4.0
+        version: 5.4.21(@types/node@22.19.17)
+      vitest:
+        specifier: ^2.0.0
+        version: 2.1.9(@types/node@22.19.17)
+
   packages/config: {}
 
   packages/ui:
@@ -404,6 +444,14 @@ packages:
   '@forgesworn/range-proof@file:../range-proof':
     resolution: {directory: ../range-proof, type: directory}
 
+  '@forgesworn/shamir-core@1.0.3':
+    resolution: {integrity: sha512-xtq5zSWIKjJFItVl39IlwntT20EyRzcF7/RaLRPVCqyxWinQUvrR7SPCcbuxVVNFpt/scDgkqcTfSX5www0XVQ==}
+    engines: {node: '>=18'}
+
+  '@forgesworn/shamir-words@file:../shamir-words':
+    resolution: {directory: ../shamir-words, type: directory}
+    engines: {node: '>=18'}
+
   '@humanfs/core@0.19.2':
     resolution: {integrity: sha512-UhXNm+CFMWcbChXywFwkmhqjs3PRCmcSa/hfBgLIb7oQ5HNb1wS0icWsGtSAUNgefHeI+eBrA8I1fxmbHsGdvA==}
     engines: {node: '>=18.18.0'}
@@ -442,6 +490,10 @@ packages:
 
   '@noble/curves@2.2.0':
     resolution: {integrity: sha512-T/BoHgFXirb0ENSPBquzX0rcjXeM6Lo892a2jlYJkqk83LqZx0l1Of7DzlKJ6jkpvMrkHSnAcgb5JegL8SeIkQ==}
+    engines: {node: '>= 20.19.0'}
+
+  '@noble/hashes@2.0.1':
+    resolution: {integrity: sha512-XlOlEbQcE9fmuXxrVTXCTlG2nlRXa9Rj3rr5Ue/+tX+nmkgbX720YHh0VR3hBF9xDvwnb8D2shVGOwNx+ulArw==}
     engines: {node: '>= 20.19.0'}
 
   '@noble/hashes@2.2.0':
@@ -619,6 +671,12 @@ packages:
     resolution: {integrity: sha512-lWMnixq/QzxyhTV6NjQJ4SFo1J6PvOX8vUx5Wb4bBPsEb+8xZ89Bz6kOXpfXj9ak9AHTQVQzlgzBEc1SyM27xQ==}
     cpu: [x64]
     os: [win32]
+
+  '@scure/base@2.0.0':
+    resolution: {integrity: sha512-3E1kpuZginKkek01ovG8krQ0Z44E3DHPjc5S2rjJw9lZn3KSQOs8S7wqikF/AH7iRanHypj85uGyxk0XAyC37w==}
+
+  '@scure/bip39@2.0.1':
+    resolution: {integrity: sha512-PsxdFj/d2AcJcZDX1FXN3dDgitDDTmwf78rKZq1a6c1P1Nan1X/Sxc7667zU3U+AN60g7SxxP0YCVw2H/hBycg==}
 
   '@testing-library/dom@8.20.1':
     resolution: {integrity: sha512-/DiOQ5xBxgdYRC8LNk7U+RWat0S3qRLeIw3ZIkMQ9kkVlRmwD/Eg8k8CqIpD6GW7u20JIUOfMKbxtiLutpjQ4g==}
@@ -2087,6 +2145,14 @@ snapshots:
       '@noble/curves': 2.2.0
       '@noble/hashes': 2.2.0
 
+  '@forgesworn/shamir-core@1.0.3': {}
+
+  '@forgesworn/shamir-words@file:../shamir-words':
+    dependencies:
+      '@forgesworn/shamir-core': 1.0.3
+      '@noble/hashes': 2.2.0
+      '@scure/bip39': 2.0.1
+
   '@humanfs/core@0.19.2':
     dependencies:
       '@humanfs/types': 0.15.0
@@ -2125,6 +2191,8 @@ snapshots:
   '@noble/curves@2.2.0':
     dependencies:
       '@noble/hashes': 2.2.0
+
+  '@noble/hashes@2.0.1': {}
 
   '@noble/hashes@2.2.0': {}
 
@@ -2266,6 +2334,13 @@ snapshots:
 
   '@rollup/rollup-win32-x64-msvc@4.60.1':
     optional: true
+
+  '@scure/base@2.0.0': {}
+
+  '@scure/bip39@2.0.1':
+    dependencies:
+      '@noble/hashes': 2.0.1
+      '@scure/base': 2.0.0
 
   '@testing-library/dom@8.20.1':
     dependencies:
