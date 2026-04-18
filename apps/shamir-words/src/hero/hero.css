@@ -153,3 +153,7 @@
   cursor: pointer;
   font-family: var(--font-body);
 }
+
+.sw-hero-copy .fgs-install-row {
+  margin-top: var(--space-6);
+}

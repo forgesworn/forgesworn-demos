@@ -7,6 +7,66 @@ export function Walkthrough() {
 
       <article class="sw-walk-step">
         <h3>1. Shamir over GF(256)</h3>
+        <svg
+          class="sw-walk-diagram"
+          viewBox="0 0 320 120"
+          role="img"
+          aria-label="A polynomial passing through the secret at x equals zero and five share points"
+        >
+          <defs>
+            <linearGradient id="sw-axis" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="currentColor" stop-opacity="0.2" />
+              <stop offset="1" stop-color="currentColor" stop-opacity="0.4" />
+            </linearGradient>
+          </defs>
+          <line x1="20" y1="100" x2="300" y2="100" stroke="url(#sw-axis)" stroke-width="1" />
+          <line x1="40" y1="20" x2="40" y2="108" stroke="url(#sw-axis)" stroke-width="1" />
+
+          {/* Polynomial curve (static shape) */}
+          <path
+            d="M 40 60 Q 100 10 160 70 T 290 40"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+          />
+
+          {/* Secret point at x=0 (the constant term) */}
+          <circle cx="40" cy="60" r="5" fill="currentColor">
+            <animate attributeName="r" values="3;6;3" dur="2.4s" repeatCount="indefinite" />
+          </circle>
+          <text x="14" y="64" font-family="var(--font-mono)" font-size="10" fill="currentColor">S</text>
+
+          {/* Share points along the curve (x = 1..5) */}
+          {[
+            { x: 90, y: 33, label: "1" },
+            { x: 130, y: 50, label: "2" },
+            { x: 175, y: 71, label: "3" },
+            { x: 220, y: 58, label: "4" },
+            { x: 265, y: 45, label: "5" },
+          ].map((p, i) => (
+            <g key={i}>
+              <circle cx={p.x} cy={p.y} r="3.5" fill="currentColor" opacity="0.7">
+                <animate
+                  attributeName="opacity"
+                  values="0;0.7;0.7"
+                  dur="2.4s"
+                  begin={`${i * 0.12}s`}
+                  repeatCount="indefinite"
+                />
+              </circle>
+              <text
+                x={p.x + 6}
+                y={p.y - 4}
+                font-family="var(--font-mono)"
+                font-size="9"
+                fill="currentColor"
+                opacity="0.6"
+              >
+                {p.label}
+              </text>
+            </g>
+          ))}
+        </svg>
         <p>
           The secret is split into shares using Shamir's secret sharing over the
           finite field <code>GF(256)</code>. A polynomial of degree{" "}

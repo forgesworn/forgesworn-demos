@@ -1,4 +1,5 @@
 import { useState } from "preact/hooks";
+import { InstallRow } from "@forgesworn-demos/ui";
 import { SeedInput } from "./SeedInput.js";
 import { Cards } from "./Cards.js";
 import { splitSeed } from "./splitSeed.js";
@@ -42,6 +43,10 @@ export function Hero() {
           Split a 12-word seed into five word-list shares. Any three reconstruct
           it. Two or fewer reveal nothing — not even one word of the original.
         </p>
+        <InstallRow
+          packageName="@forgesworn/shamir-words"
+          githubUrl="https://github.com/forgesworn/shamir-words"
+        />
       </div>
       <div class="sw-hero-interact">
         <SeedInput value={seed} onChange={setSeed} demoValue={DEMO_SEED} />

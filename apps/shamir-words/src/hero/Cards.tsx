@@ -23,7 +23,10 @@ export function Cards({ shares, selected, onToggle }: CardsProps) {
             onClick={() => onToggle(index)}
             aria-pressed={isSelected}
           >
-            <div class="sw-card-label">Share {index + 1}</div>
+            <div class="sw-card-label">
+              <span class="sw-card-label-index">Share {index + 1}</span>
+              <span class="sw-card-label-of">of {shares.length}</span>
+            </div>
             <div class="sw-card-words">
               {share.slice(0, 6).map((word, wordIndex) => (
                 <span key={wordIndex}>{word}</span>

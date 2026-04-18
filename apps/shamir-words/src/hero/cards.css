@@ -40,12 +40,25 @@
 }
 
 .sw-card-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-2);
   font-family: var(--font-mono);
   font-size: var(--text-xs);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--colour-text-subtle);
   margin-bottom: var(--space-3);
+}
+
+.sw-card-label-of {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--colour-text-subtle);
+  text-transform: none;
+  letter-spacing: 0;
+  opacity: 0.6;
 }
 
 .sw-card-words {
