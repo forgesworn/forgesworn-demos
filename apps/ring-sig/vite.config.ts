@@ -6,6 +6,13 @@ export default defineConfig({
   build: {
     target: "es2022",
     sourcemap: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          "ring-sig": ["@forgesworn/ring-sig"],
+        },
+      },
+    },
   },
   server: {
     port: 5175,

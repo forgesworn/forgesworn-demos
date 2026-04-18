@@ -48,3 +48,14 @@
   font-size: var(--text-sm);
   color: var(--colour-text-muted);
 }
+
+.rs-columns-debug {
+  margin: 0;
+  padding: var(--space-3);
+  background: var(--colour-crypto-bg);
+  color: var(--colour-crypto-fg);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+}

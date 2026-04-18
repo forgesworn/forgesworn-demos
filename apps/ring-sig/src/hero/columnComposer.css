@@ -1,0 +1,55 @@
+.rs-composer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-6);
+  background: var(--colour-bg-raised);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-lg);
+}
+
+.rs-composer-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--colour-text-subtle);
+}
+
+.rs-composer-byline {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.rs-composer-input {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: var(--text-base);
+  line-height: 1.6;
+  padding: var(--space-4);
+  background: var(--colour-bg);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-md);
+  color: var(--colour-text);
+  resize: vertical;
+  min-height: 120px;
+}
+
+.rs-composer-publish {
+  align-self: flex-start;
+  padding: var(--space-3) var(--space-6);
+  background: var(--colour-accent);
+  color: var(--colour-accent-fg);
+  border: none;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  min-height: 44px;
+  font-family: var(--font-body);
+  cursor: pointer;
+}
+
+.rs-composer-publish:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
