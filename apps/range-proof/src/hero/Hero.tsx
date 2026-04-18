@@ -1,6 +1,8 @@
 import { useState } from "preact/hooks";
+import { InstallRow } from "@forgesworn-demos/ui";
 import { DateInput } from "./DateInput.js";
 import { ProofAnimation } from "./ProofAnimation.js";
+import { ProofArtefact } from "./ProofArtefact.js";
 import { proveAgeOver18, encodeBundle, type AgeProofBundle } from "./proveAge.js";
 import "./hero.css";
 
@@ -42,6 +44,10 @@ export function Hero() {
           without disclosing the value. Here, we prove you are over 18 — without
           revealing your birthday.
         </p>
+        <InstallRow
+          packageName="@forgesworn/range-proof"
+          githubUrl="https://github.com/forgesworn/range-proof"
+        />
       </div>
       <div class="rp-hero-interact">
         <DateInput
@@ -60,23 +66,13 @@ export function Hero() {
         <ProofAnimation active={animating} onComplete={handleAnimationComplete} />
         {error && <div class="rp-error" role="alert">{error}</div>}
         {bundle && !animating && (
-          <div class="rp-output">
-            <div class="rp-output-label">Proof bundle</div>
-            <pre>{JSON.stringify(bundle.proof, null, 2).slice(0, 400)}…</pre>
+          <>
+            <ProofArtefact bundle={bundle} />
             {shareUrl && (
-              <div class="rp-share">
-                <div class="rp-output-label">Shareable verifier URL</div>
-                <code>{shareUrl}</code>
+              <div class="rp-actions">
                 <button
                   type="button"
-                  class="rp-copy"
-                  onClick={() => navigator.clipboard.writeText(shareUrl)}
-                >
-                  Copy URL
-                </button>
-                <button
-                  type="button"
-                  class="rp-copy"
+                  class="rp-action-primary"
                   onClick={async () => {
                     if (!bundle || !shareUrl) return;
                     const { generateCertificate, downloadCertificate } = await import(
@@ -88,9 +84,16 @@ export function Hero() {
                 >
                   Download certificate (PDF)
                 </button>
+                <button
+                  type="button"
+                  class="rp-action-secondary"
+                  onClick={() => navigator.clipboard.writeText(shareUrl)}
+                >
+                  Copy verify URL
+                </button>
               </div>
             )}
-          </div>
+          </>
         )}
       </div>
     </section>

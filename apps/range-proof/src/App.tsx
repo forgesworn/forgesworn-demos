@@ -1,4 +1,4 @@
-import { Header, Footer } from "@forgesworn-demos/ui";
+import { Header, Footer, TryMoreDemos } from "@forgesworn-demos/ui";
 import { Hero } from "./hero/Hero.js";
 import { Playground } from "./playground/Playground.js";
 import { VerifyView } from "./verify/VerifyView.js";
@@ -23,6 +23,7 @@ export function App() {
             <Hero />
             <Playground />
             <Walkthrough />
+            <TryMoreDemos current="range-proof" />
           </>
         )}
       </main>

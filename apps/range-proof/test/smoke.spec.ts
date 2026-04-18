@@ -9,19 +9,35 @@ test("page loads with header, hero, and footer", async ({ page }) => {
   await expect(page.locator(".fgs-footer")).toBeVisible();
 });
 
-test("hero generates a proof and produces a shareable URL", async ({ page }) => {
+test("hero generates a proof and shows the artefact", async ({ page }) => {
   await page.goto("/");
   await page.getByRole("button", { name: /Generate proof/ }).click();
-  await expect(page.locator(".rp-output")).toBeVisible({ timeout: 10_000 });
-  const shareUrl = await page.locator(".rp-share code").textContent();
-  expect(shareUrl).toMatch(/\?verify=/);
+  await expect(page.locator(".rp-artefact")).toBeVisible({ timeout: 10_000 });
+  await expect(page.locator(".rp-artefact-size")).toContainText("kB");
 });
 
 test("verifier URL shows age confirmed", async ({ page }) => {
+  // Intercept clipboard.writeText to capture the URL without needing read permissions.
   await page.goto("/");
+  await page.evaluate(() => {
+    (window as unknown as Record<string, unknown>).__clipboardCapture = "";
+    Object.defineProperty(navigator, "clipboard", {
+      value: {
+        writeText: (text: string) => {
+          (window as unknown as Record<string, unknown>).__clipboardCapture = text;
+          return Promise.resolve();
+        },
+      },
+      configurable: true,
+    });
+  });
   await page.getByRole("button", { name: /Generate proof/ }).click();
-  await expect(page.locator(".rp-share code")).toBeVisible({ timeout: 10_000 });
-  const shareUrl = (await page.locator(".rp-share code").textContent()) ?? "";
+  await expect(page.locator(".rp-artefact")).toBeVisible({ timeout: 10_000 });
+  await page.getByRole("button", { name: /Copy verify URL/ }).click();
+  const shareUrl = await page.evaluate(
+    () => (window as unknown as Record<string, unknown>).__clipboardCapture as string,
+  );
+  expect(shareUrl).toMatch(/\?verify=/);
   const pathWithQuery = new URL(shareUrl).pathname + new URL(shareUrl).search;
   await page.goto(pathWithQuery);
   await expect(

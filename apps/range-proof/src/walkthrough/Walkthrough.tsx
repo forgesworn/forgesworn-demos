@@ -7,13 +7,45 @@ export function Walkthrough() {
 
       <article class="rp-walk-step">
         <h3>1. Pedersen commitment</h3>
+        <svg
+          class="rp-walk-diagram"
+          viewBox="0 0 320 120"
+          role="img"
+          aria-label="v·G plus r·H equals C: two vectors combine to form a commitment point"
+        >
+          <defs>
+            <marker id="rp-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+              <polygon points="0,0 8,4 0,8" fill="currentColor" />
+            </marker>
+          </defs>
+          <g transform="translate(40,60)">
+            <line x1="0" y1="0" x2="80" y2="-30" stroke="currentColor" stroke-width="1.5" marker-end="url(#rp-arrow)">
+              <animate attributeName="x2" from="0" to="80" dur="1.6s" repeatCount="indefinite" />
+              <animate attributeName="y2" from="0" to="-30" dur="1.6s" repeatCount="indefinite" />
+            </line>
+            <text x="42" y="-18" font-family="var(--font-mono)" font-size="10" fill="currentColor">v·G</text>
+          </g>
+          <g transform="translate(120,30)">
+            <line x1="0" y1="0" x2="80" y2="30" stroke="currentColor" stroke-width="1.5" marker-end="url(#rp-arrow)">
+              <animate attributeName="x2" from="0" to="80" dur="1.6s" begin="0.4s" repeatCount="indefinite" />
+              <animate attributeName="y2" from="0" to="30" dur="1.6s" begin="0.4s" repeatCount="indefinite" />
+            </line>
+            <text x="42" y="30" font-family="var(--font-mono)" font-size="10" fill="currentColor">r·H</text>
+          </g>
+          <g transform="translate(200,60)">
+            <circle cx="0" cy="0" r="6" fill="currentColor">
+              <animate attributeName="r" from="2" to="6" dur="1.6s" begin="0.8s" repeatCount="indefinite" />
+            </circle>
+            <text x="12" y="4" font-family="var(--font-mono)" font-size="11" fill="currentColor">C</text>
+          </g>
+        </svg>
         <p>
           To hide the value while committing to it, we form{" "}
           <code>C = v·G + r·H</code> — a point on the secp256k1 curve where{" "}
-          <code>v</code> is the secret value and <code>r</code> is a random
-          blinding factor. Two generators: <code>G</code> is the standard curve
-          generator, <code>H</code> is derived from a nothing-up-my-sleeve hash
-          so no one knows <code>log_G(H)</code>.
+          <code>v</code> is the secret value and <code>r</code> is a random blinding
+          factor. Two generators: <code>G</code> is the standard curve generator,{" "}
+          <code>H</code> is derived from a nothing-up-my-sleeve hash so no one knows{" "}
+          <code>log_G(H)</code>.
         </p>
       </article>
 
