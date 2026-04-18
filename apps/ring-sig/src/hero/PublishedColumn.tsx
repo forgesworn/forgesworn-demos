@@ -51,6 +51,20 @@ export function PublishedColumn({ column, threadColour, showEncryptionNote }: Pr
         )}
       </footer>
       <ProofInspector column={column} />
+      <button
+        type="button"
+        class="rs-inspector-btn"
+        style={{ marginTop: "var(--space-3)" }}
+        onClick={async () => {
+          const { generateColumnPdf, downloadColumnPdf } = await import(
+            "./generateColumnPdf.js"
+          );
+          const pdf = await generateColumnPdf(column, window.location.href);
+          downloadColumnPdf(pdf, `the-insider-${column.keyImage.slice(0, 8)}.pdf`);
+        }}
+      >
+        Download printable column (PDF)
+      </button>
     </article>
   );
 }
