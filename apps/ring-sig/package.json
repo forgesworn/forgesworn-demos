@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@forgesworn-demos/ui": "workspace:*",
-    "@forgesworn/ring-sig": "file:../../../ring-sig",
+    "@forgesworn/ring-sig": "^3.0.0",
     "@noble/curves": "^1.6.0",
     "@noble/hashes": "^1.5.0",
     "motion": "^11.0.0",

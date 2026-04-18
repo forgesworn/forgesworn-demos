@@ -30,8 +30,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/ui
       '@forgesworn/range-proof':
-        specifier: file:../../../range-proof
-        version: file:../range-proof
+        specifier: ^2.0.1
+        version: 2.0.1
       motion:
         specifier: ^11.0.0
         version: 11.18.2
@@ -79,8 +79,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/ui
       '@forgesworn/ring-sig':
-        specifier: file:../../../ring-sig
-        version: file:../ring-sig
+        specifier: ^3.0.0
+        version: 3.0.0
       '@noble/curves':
         specifier: ^1.6.0
         version: 1.9.7
@@ -131,8 +131,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/ui
       '@forgesworn/shamir-words':
-        specifier: file:../../../shamir-words
-        version: file:../shamir-words
+        specifier: ^1.1.0
+        version: 1.1.0
       '@scure/bip39':
         specifier: ^2.0.1
         version: 2.0.1
@@ -496,18 +496,18 @@ packages:
     resolution: {integrity: sha512-rZAP3aVgB9ds9KOeUSL+zZ21hPmo8dh6fnIFwRQj5EAZl9gzR7wxYbYXYysAM8CTqGmUGyp2S4kUdV17MnGuWQ==}
     engines: {node: ^20.19.0 || ^22.13.0 || >=24}
 
-  '@forgesworn/range-proof@file:../range-proof':
-    resolution: {directory: ../range-proof, type: directory}
+  '@forgesworn/range-proof@2.0.1':
+    resolution: {integrity: sha512-mByII9v7GmzSFU7ncJ7BYXdF14Aq9fmfzf1HUk0bZ5UsxeqeNEikBCYJn/GcDY5KEpImLZmLeetm1RtKBeCtQA==}
 
-  '@forgesworn/ring-sig@file:../ring-sig':
-    resolution: {directory: ../ring-sig, type: directory}
+  '@forgesworn/ring-sig@3.0.0':
+    resolution: {integrity: sha512-LZ2fwwQ79U4BbHpggdeCZJDBwW2J/c/Zm2mIeKVO7BjOJLkZ/1nCOnlSZKPvCjRht5nMYyRaE+u/sz0pNvkYOg==}
 
   '@forgesworn/shamir-core@1.0.3':
     resolution: {integrity: sha512-xtq5zSWIKjJFItVl39IlwntT20EyRzcF7/RaLRPVCqyxWinQUvrR7SPCcbuxVVNFpt/scDgkqcTfSX5www0XVQ==}
     engines: {node: '>=18'}
 
-  '@forgesworn/shamir-words@file:../shamir-words':
-    resolution: {directory: ../shamir-words, type: directory}
+  '@forgesworn/shamir-words@1.1.0':
+    resolution: {integrity: sha512-kcuvRFq092IjPt+lUxTt9AfkI616DwnC86sDynfIlRhoyZIAwVQSXq+9YiHGPDckL3+wj+u9Anv43DNpBMc+eg==}
     engines: {node: '>=18'}
 
   '@humanfs/core@0.19.2':
@@ -2206,19 +2206,19 @@ snapshots:
       '@eslint/core': 1.2.1
       levn: 0.4.1
 
-  '@forgesworn/range-proof@file:../range-proof':
+  '@forgesworn/range-proof@2.0.1':
     dependencies:
       '@noble/curves': 2.2.0
       '@noble/hashes': 2.2.0
 
-  '@forgesworn/ring-sig@file:../ring-sig':
+  '@forgesworn/ring-sig@3.0.0':
     dependencies:
       '@noble/curves': 2.2.0
       '@noble/hashes': 2.2.0
 
   '@forgesworn/shamir-core@1.0.3': {}
 
-  '@forgesworn/shamir-words@file:../shamir-words':
+  '@forgesworn/shamir-words@1.1.0':
     dependencies:
       '@forgesworn/shamir-core': 1.0.3
       '@noble/hashes': 2.2.0
