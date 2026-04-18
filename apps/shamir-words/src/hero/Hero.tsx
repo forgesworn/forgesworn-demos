@@ -1,5 +1,6 @@
 import { useState } from "preact/hooks";
 import { SeedInput } from "./SeedInput.js";
+import { Cards } from "./Cards.js";
 import { splitSeed } from "./splitSeed.js";
 import "./hero.css";
 
@@ -9,16 +10,27 @@ const DEMO_SEED =
 export function Hero() {
   const [seed, setSeed] = useState(DEMO_SEED);
   const [shares, setShares] = useState<readonly string[][] | null>(null);
+  const [selected, setSelected] = useState<ReadonlySet<number>>(new Set());
   const [error, setError] = useState<string | null>(null);
 
   function handleSplit() {
     setError(null);
+    setSelected(new Set());
     try {
       setShares(splitSeed(seed, 3, 5));
     } catch (err) {
       setShares(null);
       setError(err instanceof Error ? err.message : String(err));
     }
+  }
+
+  function toggleCard(index: number) {
+    setSelected((prev) => {
+      const next = new Set(prev);
+      if (next.has(index)) next.delete(index);
+      else next.add(index);
+      return next;
+    });
   }
 
   return (
@@ -37,15 +49,12 @@ export function Hero() {
         </button>
         {error && <div class="sw-error" role="alert">{error}</div>}
         {shares && (
-          <div class="sw-shares-raw" role="status">
-            <div class="sw-output-label">5 shares produced — drag-restore UI lands in Task 2.3</div>
-            {shares.map((share, index) => (
-              <details key={index} class="sw-share-debug">
-                <summary>Share {index + 1}</summary>
-                <pre>{share.join(" ")}</pre>
-              </details>
-            ))}
-          </div>
+          <>
+            <Cards shares={shares} selected={selected} onToggle={toggleCard} />
+            <div class="sw-output-label">
+              Select three cards to attempt reconstruction. Fewer than three reveal nothing.
+            </div>
+          </>
         )}
       </div>
     </section>
