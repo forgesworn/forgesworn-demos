@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ring-sig.forgesworn.dev/sitemap.xml

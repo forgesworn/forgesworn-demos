@@ -1,4 +1,8 @@
 import { render } from "preact";
+import "@fontsource-variable/inter";
+import "@fontsource-variable/jetbrains-mono";
+import "@fontsource/instrument-serif/400.css";
+import "@fontsource/instrument-serif/400-italic.css";
 import "@forgesworn-demos/ui/theme.css";
 import "./styles.css";
 import { App } from "./App.js";

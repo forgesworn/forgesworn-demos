@@ -12,6 +12,9 @@
     "test": "playwright test"
   },
   "dependencies": {
+    "@fontsource-variable/inter": "^5.2.8",
+    "@fontsource-variable/jetbrains-mono": "^5.2.8",
+    "@fontsource/instrument-serif": "^5.2.8",
     "@forgesworn-demos/ui": "workspace:*",
     "@forgesworn/ring-sig": "^3.0.0",
     "@noble/curves": "^1.6.0",
