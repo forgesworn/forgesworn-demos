@@ -1,13 +1,19 @@
 import { Header, Footer } from "@forgesworn-demos/ui";
 import { Hero } from "./hero/Hero.js";
+import { VerifyView } from "./verify/VerifyView.js";
+
+function getVerifyParam(): string | null {
+  if (typeof window === "undefined") return null;
+  const params = new URLSearchParams(window.location.search);
+  return params.get("verify");
+}
 
 export function App() {
+  const encoded = getVerifyParam();
   return (
     <>
       <Header current="range-proof" />
-      <main>
-        <Hero />
-      </main>
+      <main>{encoded ? <VerifyView encoded={encoded} /> : <Hero />}</main>
       <Footer />
     </>
   );
