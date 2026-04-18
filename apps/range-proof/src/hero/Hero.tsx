@@ -40,9 +40,8 @@ export function Hero() {
       <div class="rp-hero-copy">
         <h1>Prove it. Reveal nothing.</h1>
         <p class="rp-hero-lede">
-          A Pedersen commitment range proof proves your value is within a range
-          without disclosing the value. Here, we prove you are over 18 — without
-          revealing your birthday.
+          Prove a value is in a range without revealing the value. Here: your
+          birthday is 18+ years ago — without ever saying when.
         </p>
         <InstallRow
           packageName="@forgesworn/range-proof"

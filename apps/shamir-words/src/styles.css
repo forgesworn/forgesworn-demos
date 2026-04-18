@@ -10,3 +10,18 @@ main {
     max-width: 1100px;
   }
 }
+
+/* Per-app accent — craft paper, hand-tooled */
+:root {
+  --colour-accent: #9c5c1f;
+  --colour-accent-fg: #f5f1e6;
+  --colour-crypto-highlight: #d4a574;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --colour-accent: #d4a574;
+    --colour-accent-fg: #1a1207;
+    --colour-crypto-highlight: #d4a574;
+  }
+}

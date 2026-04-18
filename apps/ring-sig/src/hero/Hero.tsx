@@ -51,8 +51,8 @@ export function Hero() {
       <div class="rs-hero-copy">
         <h1>Sign as The Insider.</h1>
         <p class="rs-hero-lede">
-          Publish a column under a shared pseudonym. Your message is readable;
-          what's hidden is <em>which</em> of the five members wrote it.
+          Sign a column under a shared pseudonym. The message is public. What's
+          hidden is <em>which</em> of the five members wrote it.
         </p>
         <InstallRow
           packageName="@forgesworn/ring-sig"

@@ -40,8 +40,8 @@ export function Hero() {
       <div class="sw-hero-copy">
         <h1>Any three of five.</h1>
         <p class="sw-hero-lede">
-          Split a 12-word seed into five word-list shares. Any three reconstruct
-          it. Two or fewer reveal nothing — not even one word of the original.
+          Five word-list cards. Any three restore the seed. Two reveal nothing —
+          not one word.
         </p>
         <InstallRow
           packageName="@forgesworn/shamir-words"

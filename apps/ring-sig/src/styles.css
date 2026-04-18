@@ -10,3 +10,18 @@ main {
     max-width: 1100px;
   }
 }
+
+/* Per-app accent — editorial gravitas, ink */
+:root {
+  --colour-accent: #1a2d4a;
+  --colour-accent-fg: #f5f5f7;
+  --colour-crypto-highlight: #a8b5cc;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --colour-accent: #a8b5cc;
+    --colour-accent-fg: #0d0d0d;
+    --colour-crypto-highlight: #a8b5cc;
+  }
+}
