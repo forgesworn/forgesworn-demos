@@ -2,6 +2,7 @@ import { Header, Footer } from "@forgesworn-demos/ui";
 import { Hero } from "./hero/Hero.js";
 import { Playground } from "./playground/Playground.js";
 import { VerifyView } from "./verify/VerifyView.js";
+import { Walkthrough } from "./walkthrough/Walkthrough.js";
 
 function getVerifyParam(): string | null {
   if (typeof window === "undefined") return null;
@@ -21,6 +22,7 @@ export function App() {
           <>
             <Hero />
             <Playground />
+            <Walkthrough />
           </>
         )}
       </main>
