@@ -1,0 +1,117 @@
+.rp-hero {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-12);
+  padding: var(--space-16) 0 var(--space-24);
+  align-items: start;
+}
+
+@media (min-width: 900px) {
+  .rp-hero {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--space-16);
+    padding-top: var(--space-24);
+  }
+}
+
+.rp-hero-copy h1 {
+  font-family: var(--font-display);
+  font-size: var(--text-display);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  margin: 0 0 var(--space-6);
+}
+
+.rp-hero-lede {
+  font-size: var(--text-lg);
+  color: var(--colour-text-muted);
+  margin: 0;
+  max-width: 52ch;
+}
+
+.rp-hero-interact {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  padding: var(--space-8);
+  background: var(--colour-bg-raised);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-lg);
+}
+
+.rp-date-input {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.rp-date-label {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+}
+
+.rp-date-label input {
+  font-family: var(--font-mono);
+  font-size: var(--text-base);
+  padding: var(--space-3) var(--space-4);
+  background: var(--colour-bg);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-md);
+  color: var(--colour-text);
+  min-height: 44px;
+}
+
+.rp-date-label input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.rp-demo-toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+  cursor: pointer;
+}
+
+.rp-generate {
+  padding: var(--space-4) var(--space-6);
+  background: var(--colour-accent);
+  color: var(--colour-accent-fg);
+  border: none;
+  border-radius: var(--radius-full);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: 600;
+  min-height: 48px;
+  transition: transform var(--duration-fast) var(--ease-out-expo);
+}
+
+.rp-generate:hover {
+  transform: translateY(-1px);
+}
+
+.rp-generate:active {
+  transform: translateY(0);
+}
+
+.rp-output {
+  background: var(--colour-crypto-bg);
+  color: var(--colour-crypto-fg);
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  overflow-x: auto;
+}
+
+.rp-output pre {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
