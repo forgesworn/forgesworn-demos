@@ -2,7 +2,6 @@ import { useState } from "preact/hooks";
 import { DateInput } from "./DateInput.js";
 import { ProofAnimation } from "./ProofAnimation.js";
 import { proveAgeOver18, encodeBundle, type AgeProofBundle } from "./proveAge.js";
-import { generateCertificate, downloadCertificate } from "./generateCertificate.js";
 import "./hero.css";
 
 const DEMO_BIRTHDAY = "1998-06-15";
@@ -80,6 +79,9 @@ export function Hero() {
                   class="rp-copy"
                   onClick={async () => {
                     if (!bundle || !shareUrl) return;
+                    const { generateCertificate, downloadCertificate } = await import(
+                      "./generateCertificate.js"
+                    );
                     const pdf = await generateCertificate(bundle, shareUrl);
                     downloadCertificate(pdf);
                   }}
