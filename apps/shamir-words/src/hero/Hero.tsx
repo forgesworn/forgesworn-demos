@@ -2,6 +2,7 @@ import { useState } from "preact/hooks";
 import { SeedInput } from "./SeedInput.js";
 import { Cards } from "./Cards.js";
 import { splitSeed } from "./splitSeed.js";
+import { RestoreTray } from "./RestoreTray.js";
 import "./hero.css";
 
 const DEMO_SEED =
@@ -51,9 +52,7 @@ export function Hero() {
         {shares && (
           <>
             <Cards shares={shares} selected={selected} onToggle={toggleCard} />
-            <div class="sw-output-label">
-              Select three cards to attempt reconstruction. Fewer than three reveal nothing.
-            </div>
+            <RestoreTray shares={shares} selected={selected} threshold={3} />
           </>
         )}
       </div>
