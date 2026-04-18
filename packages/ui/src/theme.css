@@ -119,3 +119,116 @@ input, textarea {
 a {
   color: inherit;
 }
+
+/* === Header === */
+
+.fgs-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4) var(--space-6);
+  border-bottom: 1px solid var(--colour-border);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+}
+
+.fgs-brand {
+  font-family: var(--font-display);
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: -0.02em;
+}
+
+.fgs-demo-nav {
+  display: flex;
+  gap: var(--space-6);
+}
+
+.fgs-demo-link {
+  font-family: var(--font-mono);
+  text-decoration: none;
+  color: var(--colour-text-muted);
+  transition: color var(--duration-fast) var(--ease-out-expo);
+}
+
+.fgs-demo-link:hover {
+  color: var(--colour-text);
+}
+
+.fgs-demo-link.is-current {
+  color: var(--colour-text);
+  font-weight: 600;
+}
+
+@media (max-width: 600px) {
+  .fgs-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+  .fgs-demo-nav {
+    gap: var(--space-4);
+    font-size: var(--text-xs);
+  }
+}
+
+/* === Footer === */
+
+.fgs-footer {
+  margin-top: var(--space-24);
+  padding: var(--space-12) var(--space-6);
+  border-top: 1px solid var(--colour-border);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+}
+
+.fgs-footer-title {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin: 0 0 var(--space-2);
+}
+
+.fgs-footer-lede {
+  color: var(--colour-text-muted);
+  margin: 0 0 var(--space-8);
+}
+
+.fgs-toolkit {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-8);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-4) var(--space-6);
+}
+
+.fgs-toolkit li {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--colour-border);
+}
+
+.fgs-toolkit a {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.fgs-toolkit a:hover {
+  text-decoration: underline;
+}
+
+.fgs-toolkit span {
+  color: var(--colour-text-muted);
+  font-size: var(--text-xs);
+}
+
+.fgs-footer-licence {
+  color: var(--colour-text-subtle);
+  font-size: var(--text-xs);
+  margin: 0;
+}
