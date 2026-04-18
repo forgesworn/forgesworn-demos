@@ -73,6 +73,58 @@ importers:
         specifier: ^2.1.9
         version: 2.1.9(@types/node@22.19.17)
 
+  apps/ring-sig:
+    dependencies:
+      '@forgesworn-demos/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
+      '@forgesworn/ring-sig':
+        specifier: file:../../../ring-sig
+        version: file:../ring-sig
+      '@noble/curves':
+        specifier: ^1.6.0
+        version: 1.9.7
+      '@noble/hashes':
+        specifier: ^1.5.0
+        version: 1.8.0
+      motion:
+        specifier: ^11.0.0
+        version: 11.18.2
+      pdf-lib:
+        specifier: ^1.17.1
+        version: 1.17.1
+      preact:
+        specifier: ^10.22.0
+        version: 10.29.1
+      qrcode:
+        specifier: ^1.5.3
+        version: 1.5.4
+    devDependencies:
+      '@forgesworn-demos/config':
+        specifier: workspace:*
+        version: link:../../packages/config
+      '@playwright/test':
+        specifier: ^1.47.0
+        version: 1.59.1
+      '@preact/preset-vite':
+        specifier: ^2.9.0
+        version: 2.10.5(@babel/core@7.29.0)(preact@10.29.1)(rollup@4.60.1)(vite@5.4.21(@types/node@22.19.17))
+      '@types/qrcode':
+        specifier: ^1.5.5
+        version: 1.5.6
+      eslint:
+        specifier: ^9.0.0
+        version: 9.39.4
+      typescript:
+        specifier: ^5.6.0
+        version: 5.9.3
+      vite:
+        specifier: ^5.4.0
+        version: 5.4.21(@types/node@22.19.17)
+      vitest:
+        specifier: ^2.0.0
+        version: 2.1.9(@types/node@22.19.17)
+
   apps/shamir-words:
     dependencies:
       '@forgesworn-demos/ui':
@@ -447,6 +499,9 @@ packages:
   '@forgesworn/range-proof@file:../range-proof':
     resolution: {directory: ../range-proof, type: directory}
 
+  '@forgesworn/ring-sig@file:../ring-sig':
+    resolution: {directory: ../ring-sig, type: directory}
+
   '@forgesworn/shamir-core@1.0.3':
     resolution: {integrity: sha512-xtq5zSWIKjJFItVl39IlwntT20EyRzcF7/RaLRPVCqyxWinQUvrR7SPCcbuxVVNFpt/scDgkqcTfSX5www0XVQ==}
     engines: {node: '>=18'}
@@ -491,9 +546,17 @@ packages:
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
 
+  '@noble/curves@1.9.7':
+    resolution: {integrity: sha512-gbKGcRUYIjA3/zCCNaWDciTMFI0dCkvou3TL8Zmy5Nc7sJ47a0jtOeZoTaMxkuqRo9cRhjOdZJXegxYE5FN/xw==}
+    engines: {node: ^14.21.3 || >=16}
+
   '@noble/curves@2.2.0':
     resolution: {integrity: sha512-T/BoHgFXirb0ENSPBquzX0rcjXeM6Lo892a2jlYJkqk83LqZx0l1Of7DzlKJ6jkpvMrkHSnAcgb5JegL8SeIkQ==}
     engines: {node: '>= 20.19.0'}
+
+  '@noble/hashes@1.8.0':
+    resolution: {integrity: sha512-jCs9ldd7NwzpgXDIf6P3+NrHh9/sD6CQdxHyjQI+h/6rDNo88ypBxxz45UDuZHz9r3tNz7N/VInSVoVdtXEI4A==}
+    engines: {node: ^14.21.3 || >=16}
 
   '@noble/hashes@2.0.1':
     resolution: {integrity: sha512-XlOlEbQcE9fmuXxrVTXCTlG2nlRXa9Rj3rr5Ue/+tX+nmkgbX720YHh0VR3hBF9xDvwnb8D2shVGOwNx+ulArw==}
@@ -2148,6 +2211,11 @@ snapshots:
       '@noble/curves': 2.2.0
       '@noble/hashes': 2.2.0
 
+  '@forgesworn/ring-sig@file:../ring-sig':
+    dependencies:
+      '@noble/curves': 2.2.0
+      '@noble/hashes': 2.2.0
+
   '@forgesworn/shamir-core@1.0.3': {}
 
   '@forgesworn/shamir-words@file:../shamir-words':
@@ -2191,9 +2259,15 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
+  '@noble/curves@1.9.7':
+    dependencies:
+      '@noble/hashes': 1.8.0
+
   '@noble/curves@2.2.0':
     dependencies:
       '@noble/hashes': 2.2.0
+
+  '@noble/hashes@1.8.0': {}
 
   '@noble/hashes@2.0.1': {}
 
