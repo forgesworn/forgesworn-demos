@@ -1,0 +1,15 @@
+{
+  "_comment": "Reference only — Cloudflare Pages is configured through the dashboard, not this file. Kept in repo for documentation.",
+  "project": "forgesworn-demos-range-proof",
+  "productionBranch": "main",
+  "buildCommand": "corepack enable && pnpm install --frozen-lockfile && pnpm -F @forgesworn-demos/range-proof build",
+  "buildOutputDirectory": "apps/range-proof/dist",
+  "rootDirectory": "",
+  "environmentVariables": {
+    "NODE_VERSION": "20",
+    "PNPM_VERSION": "9.15.0"
+  },
+  "customDomains": [
+    "range-proof.forgesworn.dev"
+  ]
+}
