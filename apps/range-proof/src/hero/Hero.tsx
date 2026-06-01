@@ -106,11 +106,15 @@ export function Hero() {
                   class="rp-action-primary"
                   onClick={async () => {
                     if (!bundle || !shareUrl) return;
-                    const { generateCertificate, downloadCertificate } = await import(
-                      "./generateCertificate.js"
-                    );
-                    const pdf = await generateCertificate(bundle, shareUrl);
-                    downloadCertificate(pdf);
+                    try {
+                      const { generateCertificate, downloadCertificate } = await import(
+                        "./generateCertificate.js"
+                      );
+                      const pdf = await generateCertificate(bundle, shareUrl);
+                      downloadCertificate(pdf);
+                    } catch (err) {
+                      setError(err instanceof Error ? err.message : String(err));
+                    }
                   }}
                 >
                   Download certificate (PDF)

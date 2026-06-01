@@ -83,8 +83,24 @@ export async function generateCertificate(
     color: ink,
   });
 
-  // QR code at bottom right
-  const qrPngDataUrl = await QRCode.toDataURL(verifyUrl, { width: 200, margin: 0 });
+  // QR code at bottom right. The verify URL embeds the whole proof (several KB),
+  // which overflows a QR code's ~2.9 KB capacity — so fall back to the site origin
+  // ("make your own") when it won't fit. The full verify URL is printed above for
+  // manual verification regardless.
+  let qrCaption = "Scan to verify";
+  let qrPngDataUrl: string;
+  try {
+    qrPngDataUrl = await QRCode.toDataURL(verifyUrl, { width: 200, margin: 0 });
+  } catch {
+    let origin = "https://range-proof.forgesworn.dev";
+    try {
+      origin = new URL(verifyUrl).origin;
+    } catch {
+      // keep the default origin
+    }
+    qrCaption = "Scan to make your own";
+    qrPngDataUrl = await QRCode.toDataURL(origin, { width: 200, margin: 0 });
+  }
   const qrBytes = Uint8Array.from(
     atob(qrPngDataUrl.split(",")[1] ?? ""),
     (char) => char.charCodeAt(0),
@@ -98,7 +114,7 @@ export async function generateCertificate(
     height: qrSize,
   });
 
-  page.drawText("Scan to verify", {
+  page.drawText(qrCaption, {
     x: 595 - margin - qrSize,
     y: margin - 14,
     size: 9,
