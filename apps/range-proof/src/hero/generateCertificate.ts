@@ -1,6 +1,6 @@
 import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
 import QRCode from "qrcode";
-import type { AgeProofBundle } from "./proveAge.js";
+import { AGE_BANDS, type AgeProofBundle } from "./proveAge.js";
 
 export async function generateCertificate(
   bundle: AgeProofBundle,
@@ -28,7 +28,7 @@ export async function generateCertificate(
   });
 
   y -= 56;
-  page.drawText("Age-Over-18 Certificate", {
+  page.drawText("Range-Proof Certificate", {
     x: margin,
     y,
     size: 28,
@@ -65,7 +65,7 @@ export async function generateCertificate(
 
   y -= 48;
   page.drawText("Category", { x: margin, y, size: 10, font, color: muted });
-  page.drawText("18+", {
+  page.drawText(AGE_BANDS[bundle.category].chip, {
     x: margin,
     y: y - 14,
     size: 13,
@@ -107,7 +107,7 @@ export async function generateCertificate(
   });
 
   page.drawText(
-    "This certificate proves the holder is age 18 or over. The underlying date of birth is not disclosed.",
+    `This certificate ${AGE_BANDS[bundle.category].statement}. The underlying date of birth is not disclosed.`,
     {
       x: margin,
       y: margin + 40,

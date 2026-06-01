@@ -1,5 +1,5 @@
 import { useMemo } from "preact/hooks";
-import { decodeBundle, verifyAgeOver18 } from "../hero/proveAge.js";
+import { decodeBundle, verifyAgeBand, AGE_BANDS, type AgeCategory } from "../hero/proveAge.js";
 import "./verify.css";
 
 interface VerifyViewProps {
@@ -9,14 +9,15 @@ interface VerifyViewProps {
 interface VerifyResult {
   readonly ok: boolean;
   readonly issuedAt?: string;
+  readonly category?: AgeCategory;
   readonly error?: string;
 }
 
 function verify(encoded: string): VerifyResult {
   try {
     const bundle = decodeBundle(encoded);
-    const ok = verifyAgeOver18(bundle);
-    return { ok, issuedAt: bundle.issuedAt };
+    const ok = verifyAgeBand(bundle);
+    return { ok, issuedAt: bundle.issuedAt, category: bundle.category };
   } catch (err) {
     return { ok: false, error: err instanceof Error ? err.message : String(err) };
   }
@@ -25,13 +26,18 @@ function verify(encoded: string): VerifyResult {
 export function VerifyView({ encoded }: VerifyViewProps) {
   const result = useMemo(() => verify(encoded), [encoded]);
 
+  const heading =
+    result.ok && result.category
+      ? AGE_BANDS[result.category].heading
+      : "Proof could not be verified";
+
   return (
     <section class="rp-verify">
       <div class={`rp-verify-card ${result.ok ? "is-valid" : "is-invalid"}`}>
         <div class="rp-verify-badge">
           {result.ok ? "✓ Verified" : "✗ Invalid"}
         </div>
-        <h1>{result.ok ? "Age 18+ confirmed" : "Proof could not be verified"}</h1>
+        <h1>{heading}</h1>
         {result.ok && result.issuedAt && (
           <p class="rp-verify-meta">
             Proof issued {new Date(result.issuedAt).toLocaleString("en-GB")} —

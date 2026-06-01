@@ -159,3 +159,39 @@
 .rp-action-secondary:hover {
   background: var(--colour-bg-subtle);
 }
+
+/* Band toggle — choose what to prove (18+ / under 18) */
+.rp-band-toggle {
+  display: inline-flex;
+  gap: 0.25rem;
+  padding: 0.25rem;
+  background: var(--colour-bg);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-full);
+  align-self: flex-start;
+}
+
+.rp-band-option {
+  padding: var(--space-2) var(--space-5);
+  border: none;
+  background: transparent;
+  color: var(--colour-text-muted);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  min-height: 36px;
+  transition:
+    background var(--duration-fast) var(--ease-out-expo),
+    color var(--duration-fast) var(--ease-out-expo);
+}
+
+.rp-band-option.is-active {
+  background: var(--colour-accent);
+  color: var(--colour-accent-fg);
+}
+
+.rp-band-option:not(.is-active):hover {
+  color: var(--colour-text);
+}

@@ -1,5 +1,5 @@
 import { useMemo } from "preact/hooks";
-import type { AgeProofBundle } from "./proveAge.js";
+import { AGE_BANDS, type AgeProofBundle } from "./proveAge.js";
 import "./proofArtefact.css";
 
 interface Props {
@@ -57,7 +57,7 @@ export function ProofArtefact({ bundle }: Props) {
           <div class="rp-artefact-label">Range proof</div>
           <div class="rp-artefact-size">{size}</div>
         </div>
-        <div class="rp-artefact-category">{bundle.category}</div>
+        <div class="rp-artefact-category">{AGE_BANDS[bundle.category].chip}</div>
       </div>
 
       <svg
