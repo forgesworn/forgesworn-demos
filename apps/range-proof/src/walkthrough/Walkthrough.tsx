@@ -1,9 +1,51 @@
 import "./walkthrough.css";
 
+const PRIOR_ART = [
+  {
+    name: "Pedersen commitments",
+    href: "https://elementsproject.org/features/confidential-transactions/investigation",
+    body:
+      "A commitment hides a value but still lets algebraic relationships be checked. Confidential Transactions uses this foundation for private amounts.",
+  },
+  {
+    name: "CDS partial-knowledge proofs",
+    href: "https://link.springer.com/chapter/10.1007/3-540-48658-5_19",
+    body:
+      "The bit checks use the Cramer, Damgard and Schoenmakers OR-composition pattern: prove one branch is valid without disclosing the witness.",
+  },
+  {
+    name: "Bulletproofs",
+    href: "https://crypto.stanford.edu/~dabo/pubs/abstracts/bulletproofs.html",
+    body:
+      "Modern confidential-transaction systems usually use more compact range proofs. Bulletproofs are the obvious reference point for that line of work.",
+  },
+  {
+    name: "Monero and Elements",
+    href: "https://www.getmonero.org/2020/12/24/Bulletproofs%2B-in-Monero.html",
+    body:
+      "Production privacy systems have been using range proofs for years. This demo is not claiming to be first; it is making the primitive easy to inspect.",
+  },
+] as const;
+
+const LIVE_NEIGHBOURS = [
+  { name: "Privado ID", href: "https://docs.privado.id/docs/verifier/query-builder/" },
+  { name: "Self", href: "https://docs.self.xyz/" },
+  { name: "zkPass", href: "https://zkpass.org/" },
+  { name: "Anon Aadhaar", href: "https://documentation.anon-aadhaar.pse.dev/docs/intro" },
+] as const;
+
 export function Walkthrough() {
   return (
     <section class="rp-walk">
-      <h2>How it works</h2>
+      <div class="rp-section-intro">
+        <p class="rp-section-kicker">Mechanics</p>
+        <h2>How it works</h2>
+        <p>
+          A range proof answers a narrow question: is the hidden value inside a
+          public range? For the age demo that means 18+ or Under 18. It does not
+          reveal the date of birth.
+        </p>
+      </div>
 
       <article class="rp-walk-step">
         <h3>1. Pedersen commitment</h3>
@@ -41,7 +83,7 @@ export function Walkthrough() {
         </svg>
         <p>
           To hide the value while committing to it, we form{" "}
-          <code>C = v·G + r·H</code> — a point on the secp256k1 curve where{" "}
+          <code>C = v·G + r·H</code>. This is a point on the secp256k1 curve where{" "}
           <code>v</code> is the secret value and <code>r</code> is a random blinding
           factor. Two generators: <code>G</code> is the standard curve generator,{" "}
           <code>H</code> is derived from a nothing-up-my-sleeve hash so no one knows{" "}
@@ -114,7 +156,7 @@ export function Walkthrough() {
         </svg>
         <p>
           The interactive proof is made non-interactive by hashing all
-          commitments into a single challenge — no verifier needs to be online
+          commitments into a single challenge. No verifier needs to be online
           to generate a fresh challenge. Domain separators prevent cross-protocol
           replay.
         </p>
@@ -125,22 +167,90 @@ export function Walkthrough() {
         <p>
           The verifier sees only the commitment and the proof. Even with
           unlimited computation, they cannot distinguish <code>v = 10</code>{" "}
-          from <code>v = 42</code> — as long as both are in the proven range.
+          from <code>v = 42</code>, as long as both are in the proven range.
           This is <strong>information-theoretic hiding</strong>: the same proof
           would be produced for any valid value.
         </p>
       </article>
 
-      <article class="rp-walk-step">
-        <h3>5. What this is <em>not</em></h3>
+      <section class="rp-boundary" aria-labelledby="rp-boundary-title">
+        <div class="rp-section-intro">
+          <p class="rp-section-kicker">Trust boundary</p>
+          <h2 id="rp-boundary-title">What this proves, and what it does not</h2>
+          <p>
+            The cryptography is precise. The product boundary needs to be just
+            as precise.
+          </p>
+        </div>
+
+        <div class="rp-boundary-grid">
+          <article>
+            <h3>It proves a predicate</h3>
+            <p>
+              The hidden age is inside the selected range under this proof's
+              public parameters.
+            </p>
+          </article>
+          <article>
+            <h3>It hides the input</h3>
+            <p>
+              The verifier receives a commitment and proof. The birthday and
+              blinding factor stay off the wire.
+            </p>
+          </article>
+          <article>
+            <h3>It needs an issuer in real use</h3>
+            <p>
+              This page uses a self-entered birthday. Production systems need a
+              signed credential, subject key, or other trusted source for the
+              hidden value.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="rp-prior" aria-labelledby="rp-prior-title">
+        <div class="rp-section-intro">
+          <p class="rp-section-kicker">Prior art</p>
+          <h2 id="rp-prior-title">Standing on established work</h2>
+          <p>
+            This is not a new proof system. The useful part here is the shape:
+            a small TypeScript range-proof library for secp256k1, designed to
+            run in a browser and to be read without a SNARK toolchain.
+          </p>
+        </div>
+
+        <div class="rp-prior-grid">
+          {PRIOR_ART.map((item) => (
+            <a href={item.href} target="_blank" rel="noreferrer" key={item.name}>
+              <span>{item.name}</span>
+              <p>{item.body}</p>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <section class="rp-neighbours" aria-labelledby="rp-neighbours-title">
+        <div>
+          <p class="rp-section-kicker">Current landscape</p>
+          <h2 id="rp-neighbours-title">There are other systems doing this class of work</h2>
+        </div>
         <p>
-          This is not a full confidential-transaction system. It does not prove
-          that the subject actually holds the value they claim — that is the
-          job of the <em>issuer</em> of the input. Range proofs sit alongside
-          credential systems (verifiable credentials, EUDI wallets) that
-          attest to the inputs.
+          Privado ID, Self, zkPass and Anon Aadhaar are examples of broader
+          zero-knowledge credential or attestation systems. They solve more of
+          the credential workflow. This repo is narrower: a range-proof
+          primitive and a demo that shows the privacy boundary directly.
         </p>
-      </article>
+        <ul>
+          {LIVE_NEIGHBOURS.map((item) => (
+            <li key={item.name}>
+              <a href={item.href} target="_blank" rel="noreferrer">
+                {item.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
     </section>
   );
 }

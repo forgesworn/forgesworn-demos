@@ -56,11 +56,31 @@ export function Hero() {
   return (
     <section class="rp-hero">
       <div class="rp-hero-copy">
-        <h1>Prove it. Reveal nothing.</h1>
+        <p class="rp-hero-eyebrow">Pedersen range proof demo</p>
+        <h1>Private age checks in the browser</h1>
         <p class="rp-hero-lede">
-          Prove your age is in a range without revealing the value — over 18, or{" "}
-          <strong>under 18</strong> for a space built for children. Either way,
-          the birthday never leaves your device.
+          Enter a birthday locally. The page turns the derived age into a
+          Pedersen commitment and proves one narrow claim: 18+ or{" "}
+          <strong>under 18</strong>. The verifier learns the band, not the date.
+        </p>
+        <dl class="rp-claim-flow" aria-label="What the demo proves">
+          <div>
+            <dt>Claim</dt>
+            <dd>18+ or Under 18</dd>
+          </div>
+          <div>
+            <dt>Proof</dt>
+            <dd>Range proof over a hidden age</dd>
+          </div>
+          <div>
+            <dt>Boundary</dt>
+            <dd>Demo input is self-entered</dd>
+          </div>
+        </dl>
+        <p class="rp-hero-note">
+          In a production flow the hidden value needs to come from an
+          issuer-signed credential, a subject key, or another trusted source.
+          This demo shows the cryptographic privacy layer.
         </p>
         <InstallRow
           packageName="@forgesworn/range-proof"
@@ -68,6 +88,10 @@ export function Hero() {
         />
       </div>
       <div class="rp-hero-interact">
+        <div class="rp-demo-heading">
+          <p>Try it</p>
+          <h2>Generate a local proof</h2>
+        </div>
         <div class="rp-band-toggle" role="group" aria-label="What to prove">
           {(Object.keys(AGE_BANDS) as AgeCategory[]).map((c) => (
             <button
@@ -92,7 +116,7 @@ export function Hero() {
           onClick={handleGenerate}
           disabled={animating}
         >
-          {animating ? "Generating…" : "Generate proof →"}
+          {animating ? "Generating..." : "Generate proof"}
         </button>
         <ProofAnimation active={animating} onComplete={handleAnimationComplete} />
         {error && <div class="rp-error" role="alert">{error}</div>}

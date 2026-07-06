@@ -7,7 +7,7 @@
   font-family: var(--font-display);
   font-size: var(--text-2xl);
   font-weight: 500;
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
   margin: 0 0 var(--space-3);
 }
 
@@ -67,7 +67,7 @@
   background: var(--colour-accent);
   color: var(--colour-accent-fg);
   border: none;
-  border-radius: var(--radius-full);
+  border-radius: var(--radius-md);
   font-weight: 600;
   min-height: 44px;
 }

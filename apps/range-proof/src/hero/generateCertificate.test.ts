@@ -13,7 +13,7 @@ describe("generateCertificate", () => {
   });
 
   it("produces a PDF even when the verify URL overflows a QR code", async () => {
-    // The real verify URL embeds the whole proof (several KB) — far beyond a QR
+    // The real verify URL embeds the whole proof (several KB), far beyond a QR
     // code's ~2.9 KB capacity. The certificate must still generate (the QR falls
     // back to the site origin) rather than throwing.
     const bundle = proveAgeBand("1990-01-01", "18+", new Date("2026-04-18"));

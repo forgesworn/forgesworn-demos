@@ -63,7 +63,7 @@ export function Playground() {
         <label class="rp-playground-context">
           <span>
             Binding context (optional)
-            <em>— proofs bound to this context will not verify under a different one</em>
+            <em>Proofs bound to this context will not verify under a different one.</em>
           </span>
           <input
             type="text"
@@ -85,7 +85,7 @@ export function Playground() {
           ) : (
             <>
               <strong>{result.ok ? "Valid proof" : "Invalid proof"}</strong>
-              <span>— size {result.size} bytes (JSON-encoded)</span>
+              <span>Size {result.size} bytes (JSON-encoded).</span>
             </>
           )}
         </div>
