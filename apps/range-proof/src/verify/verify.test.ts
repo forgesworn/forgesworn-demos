@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { proveAgeBand, encodeBundle, decodeBundle, verifyAgeBand } from "../hero/proveAge.js";
 
-describe("encode → decode → verify round-trip", () => {
+describe("encode, decode, verify round-trip", () => {
   it("decodes and verifies a freshly encoded 18+ bundle", () => {
     const bundle = proveAgeBand("1990-01-01", "18+", new Date("2026-04-18"));
     const encoded = encodeBundle(bundle);
@@ -21,9 +21,9 @@ describe("encode → decode → verify round-trip", () => {
   it("fails to decode/verify tampered input", () => {
     const bundle = proveAgeBand("1990-01-01", "18+", new Date("2026-04-18"));
     const encoded = encodeBundle(bundle);
-    // Flip one character in the middle — either decode throws, or verify returns false.
+    // Flip one character in the middle. Either decode throws, or verify returns false.
     const tampered = encoded.slice(0, 32) + (encoded[32] === "A" ? "B" : "A") + encoded.slice(33);
-    let ok = true;
+    let ok: boolean;
     try {
       const decoded = decodeBundle(tampered);
       ok = verifyAgeBand(decoded);

@@ -39,10 +39,17 @@ export function VerifyView({ encoded }: VerifyViewProps) {
         </div>
         <h1>{heading}</h1>
         {result.ok && result.issuedAt && (
-          <p class="rp-verify-meta">
-            Proof issued {new Date(result.issuedAt).toLocaleString("en-GB")} —
-            birthday not disclosed.
-          </p>
+          <>
+            <p class="rp-verify-meta">
+              Proof issued {new Date(result.issuedAt).toLocaleString("en-GB")}.
+              Birthday not disclosed.
+            </p>
+            <p class="rp-verify-boundary">
+              This confirms the encoded proof matches the selected age band.
+              It does not confirm who entered the birthday unless the proof is
+              bound to an issuer, subject key, or trusted credential.
+            </p>
+          </>
         )}
         {!result.ok && result.error && (
           <details class="rp-verify-technical">
@@ -51,7 +58,7 @@ export function VerifyView({ encoded }: VerifyViewProps) {
           </details>
         )}
         <a href={typeof window !== "undefined" ? window.location.pathname : "/"} class="rp-verify-back">
-          ← Make your own proof
+          Make your own proof
         </a>
       </div>
     </section>

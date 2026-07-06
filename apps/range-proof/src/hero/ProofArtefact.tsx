@@ -6,8 +6,8 @@ interface Props {
   readonly bundle: AgeProofBundle;
 }
 
-// 32-cell hex fingerprint — each cell's opacity maps from a byte's value (0–255 → 0.15–1.0).
-// Byte source: the first 32 bytes of the proof's commitment hex (or whatever first hex-like
+// 32-cell hex fingerprint. Each cell's opacity maps from a byte's value.
+// Byte source: the first 32 bytes of the proof's commitment hex, or whatever first hex-like
 // string the bundle exposes). Visual says "binary data", doesn't pretend to be meaningful.
 function fingerprintCells(bundle: AgeProofBundle): number[] {
   const proof = bundle.proof as unknown as Record<string, unknown>;
@@ -36,8 +36,8 @@ function proofSize(bundle: AgeProofBundle): string {
 }
 
 function shortHex(s: string, head = 6, tail = 4): string {
-  if (!s) return "—";
-  return s.length <= head + tail + 1 ? s : `${s.slice(0, head)}…${s.slice(-tail)}`;
+  if (!s) return "-";
+  return s.length <= head + tail + 1 ? s : `${s.slice(0, head)}...${s.slice(-tail)}`;
 }
 
 export function ProofArtefact({ bundle }: Props) {
@@ -59,6 +59,11 @@ export function ProofArtefact({ bundle }: Props) {
         </div>
         <div class="rp-artefact-category">{AGE_BANDS[bundle.category].chip}</div>
       </div>
+
+      <p class="rp-artefact-copy">
+        This is the verifier payload: commitment, proof, age band and issue
+        time. The birthday and blinding factor are not included.
+      </p>
 
       <svg
         class="rp-artefact-fingerprint"
