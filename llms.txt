@@ -1,0 +1,16 @@
+# ForgeSworn crypto demos
+
+> Interactive browser demos for the range-proof, shamir-words and ring-sig libraries.
+
+## Documentation
+
+- [Run the demos](https://github.com/forgesworn/forgesworn-demos/blob/main/README.md): Local setup and links to the three demos.
+
+## ForgeSworn ecosystem
+
+- [ForgeSworn library guide](https://forgesworn.dev/llms.txt): Find related libraries, tools and integration guides by task and runtime.
+- [ForgeSworn on GitHub](https://github.com/forgesworn): Browse the organisation’s public repositories.
+- [Project source](https://github.com/forgesworn/forgesworn-demos): Canonical source repository, documentation and release information.
+- [range-proof](https://github.com/forgesworn/range-proof): Range-proof primitives used by the demo.
+- [shamir-words](https://github.com/forgesworn/shamir-words): Word-encoded secret shares used by the demo.
+- [ring-sig](https://github.com/forgesworn/ring-sig): Ring signatures used by the demo.
